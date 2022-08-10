@@ -1,5 +1,3 @@
-import logo from "./logo.svg"
-import "./App.css"
 import { OrderedList } from "./orderedList"
 import * as Styled from "./styled"
 
