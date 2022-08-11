@@ -2,7 +2,7 @@ import { React, useState, useRef } from "react"
 import * as Styled from "./styled"
 
 export const OrderedList = () => {
-  const [writtenTextInArray, addWrittenTextInArray] = useState([])
+  const [writtenTextInArray, addWrittenText] = useState([])
   const inputRef = useRef()
 
   const deleteArrayElement = (e, index) => {
@@ -11,7 +11,7 @@ export const OrderedList = () => {
       writtenTextInArray.splice(index, 1)
     }
 
-    addWrittenTextInArray([...writtenTextInArray])
+    addWrittenText([...writtenTextInArray])
   }
 
   const inputDeactivation = (e) => {
@@ -20,9 +20,9 @@ export const OrderedList = () => {
     }
   }
 
-  const addingNewElementToArray = (e) => {
+  const addingNewElementToList = (e) => {
     if (e.target.value.length > 0) {
-      addWrittenTextInArray([...writtenTextInArray, e.target.value])
+      addWrittenText([...writtenTextInArray, e.target.value])
       e.target.value = ""
     }
   }
@@ -52,7 +52,7 @@ export const OrderedList = () => {
         <Styled.Input
           type="text"
           ref={inputRef}
-          onChange={(e) => addingNewElementToArray(e)}
+          onChange={(e) => addingNewElementToList(e)}
           onFocus={setOutLineForInput}
           onKeyDown={inputDeactivation}
         />
