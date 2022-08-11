@@ -41,9 +41,9 @@ export const OrderedList = () => {
               ref={inputRef}
               value={text}
               onChange={(e) => deleteArrayElement(e, index)}
-              autoFocus
               onFocus={setOutLineForInput}
               onKeyDown={inputDeactivation}
+              autoFocus
             />
           </Styled.ListItem>
         )
