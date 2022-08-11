@@ -2,16 +2,16 @@ import { React, useState, useRef } from "react"
 import * as Styled from "./styled"
 
 export const OrderedList = () => {
-  const [inputText, setInputText] = useState([])
+  const [list, setList] = useState([])
   const inputRef = useRef()
 
-  const deleteArrayElement = (e, index) => {
-    inputText[index] = e.target.value
-    if (e.target.value.length === 0) {
-      inputText.splice(index, 1)
+  const updateListItem = (value, index) => {
+    list[index] = value
+    if (value === "") {
+      list.splice(index, 1)
     }
 
-    setInputText([...inputText])
+    setList([...list])
   }
 
   const inputDeactivation = (e) => {
@@ -20,27 +20,26 @@ export const OrderedList = () => {
     }
   }
 
-  const addingNewElementToList = (e) => {
-    if (e.target.value.length > 0) {
-      setInputText([...inputText, e.target.value])
-      e.target.value = ""
+  const addElementToList = (value) => {
+    if (value !== "") {
+      setList([...list, value])
     }
   }
 
   const setOutLineForInput = () => {
-    inputRef.current.style.outlineColor = "#85BEF9"
+    inputRef.current.style.outlineColor = "#ff0000"
   }
+
   return (
     <Styled.OrderedList>
-      {inputText.map((text, index) => {
+      {list.map((text, index) => {
         return (
           <Styled.ListItem key={index}>
             <Styled.Input
               key={index}
               type="text"
-              ref={inputRef}
               value={text}
-              onChange={(e) => deleteArrayElement(e, index)}
+              onChange={(e) => updateListItem(e.target.value, index)}
               onFocus={setOutLineForInput}
               onKeyDown={inputDeactivation}
               autoFocus
@@ -51,8 +50,8 @@ export const OrderedList = () => {
       <Styled.ListItem>
         <Styled.Input
           type="text"
-          ref={inputRef}
-          onChange={(e) => addingNewElementToList(e)}
+          value={""}
+          onChange={(e) => addElementToList(e.target.value)}
           onFocus={setOutLineForInput}
           onKeyDown={inputDeactivation}
         />
