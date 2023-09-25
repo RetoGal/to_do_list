@@ -10,25 +10,12 @@ export const OrderedList = () => {
     if (value === "") {
       list.splice(index, 1)
     }
-
     setList([...list])
   }
 
-  const inputDeactivation = (e) => {
-    if (e.key === "Enter") {
-      e.target.blur()
-    }
-  }
-
-  const addElementToList = (value) => {
-    if (value !== "") {
-      setList([...list, value])
-    }
-  }
-
-  const setOutLineForInput = () => {
-    inputRef.current.style.outlineColor = "#ff0000"
-  }
+  const inputDeactivation = (e) => e.key === "Enter" && e.target.blur()
+  const addElementToList = (value) => value !== "" && setList([...list, value])
+  const setOutLineForInput = () => inputRef.current && (inputRef.current.style.outlineColor = "#ff0000")
 
   return (
     <Styled.OrderedList>
